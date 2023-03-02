@@ -9,15 +9,14 @@ import java.time.LocalDate;
 
 public class Exercise02 {
     private static final BigDecimal TOTAL = BigDecimal.valueOf(64_000);
-    private static final int NUMBER_OF_INSTALLMENTS = 48;
+    private static final long NUMBER_OF_INSTALLMENTS = 48;
 
     public static void main(String[] args) {
         BigDecimal installment = TOTAL.divide(BigDecimal.valueOf(NUMBER_OF_INSTALLMENTS), 2, RoundingMode.HALF_EVEN);
 
         LocalDate today = LocalDate.now();
 
-        BigDecimal firstInstallment = TOTAL.subtract(installment.multiply(BigDecimal.valueOf(NUMBER_OF_INSTALLMENTS).
-                                                                                     subtract(BigDecimal.ONE)));
+        BigDecimal firstInstallment = TOTAL.subtract(installment.multiply(BigDecimal.valueOf(NUMBER_OF_INSTALLMENTS - 1)));
 
         System.out.format("valor da parcela: R$ %,.2f", firstInstallment);
         System.out.println();
