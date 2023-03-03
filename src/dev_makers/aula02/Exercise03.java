@@ -12,32 +12,39 @@ package dev_makers.aula02;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.TextStyle;
 import java.time.temporal.TemporalAdjusters;
+import java.util.Locale;
 
 public class Exercise03 {
     private static final LocalDate BIRTHDAY = LocalDate.of(2001,1,1);
 
     public static void main(String[] args) {
+        Locale localeBrazil = Locale.forLanguageTag("pt-BR");
+
         DayOfWeek birthdayDayOfWeek = BIRTHDAY.getDayOfWeek();
-        System.out.println("dia da semana da data de nascimento fictícia: " + birthdayDayOfWeek);
+        System.out.println("dia da semana da data de nascimento fictícia: " +
+                           birthdayDayOfWeek.getDisplayName(TextStyle.FULL, localeBrazil));
 
         DayOfWeek dayOfWeekOfFirstDayOfBirthdayMonth = BIRTHDAY.withDayOfMonth(1).getDayOfWeek();
         System.out.println("dia da semana do primeiro dia do mês da data de nascimento fictícia: " +
-                dayOfWeekOfFirstDayOfBirthdayMonth);
+                dayOfWeekOfFirstDayOfBirthdayMonth.getDisplayName(TextStyle.FULL_STANDALONE, localeBrazil));
 
         DayOfWeek dayOfWeekOfFirstDayOfBirthdayYear = BIRTHDAY.withDayOfYear(1).getDayOfWeek();
         System.out.println("dia da semana do primeiro dia do ano da data de nascimento fictícia: " +
-                           dayOfWeekOfFirstDayOfBirthdayYear);
+                           dayOfWeekOfFirstDayOfBirthdayYear.getDisplayName(TextStyle.FULL, localeBrazil));
 
         DayOfWeek dayOfWeekOfLastDayOfBirthdayMonth = BIRTHDAY.with(TemporalAdjusters.lastDayOfMonth()).getDayOfWeek();
         System.out.println("dia da semana do último dia do mês da data de nascimento fictícia: " +
-                           dayOfWeekOfLastDayOfBirthdayMonth);
+                           dayOfWeekOfLastDayOfBirthdayMonth.getDisplayName(TextStyle.FULL_STANDALONE, localeBrazil));
 
         DayOfWeek dayOfWeekOfLastDayOfBirthdayYear = BIRTHDAY.withMonth(12).withDayOfMonth(31).getDayOfWeek();
         System.out.println("dia da semana do último dia do ano da data de nascimento fictícia: " +
-                           dayOfWeekOfLastDayOfBirthdayYear);
+                           dayOfWeekOfLastDayOfBirthdayYear.getDisplayName(TextStyle.FULL, localeBrazil));
 
         LocalDate firstFridayAfterBirthday = BIRTHDAY.with(TemporalAdjusters.next(DayOfWeek.FRIDAY));
-        System.out.println("primeira sexta-feira após a data de nascimento fictícia: " + firstFridayAfterBirthday);
+        System.out.println("primeira sexta-feira após a data de nascimento fictícia: " +
+                           firstFridayAfterBirthday.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
     }
 }
