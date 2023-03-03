@@ -15,20 +15,17 @@ import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
 
 public class Exercise02 {
-
     private static final BigDecimal TOTAL = new BigDecimal("64000");
     private static final long NUMBER_OF_INSTALLMENTS = 48;
 
     public static void main(String[] args) {
         BigDecimal installment = TOTAL.divide(BigDecimal.valueOf(NUMBER_OF_INSTALLMENTS),2, RoundingMode.HALF_EVEN);
 
-        LocalDate today = LocalDate.now();
-
         BigDecimal firstInstallment = TOTAL.subtract(installment.multiply(BigDecimal.valueOf(NUMBER_OF_INSTALLMENTS - 1)));
-
         System.out.format("valor da parcela: R$ %,.2f", firstInstallment);
         System.out.println();
 
+        LocalDate today = LocalDate.now();
         LocalDate installmentDate = today;
         if (installmentDate.getDayOfWeek() == DayOfWeek.SATURDAY || installmentDate.getDayOfWeek() == DayOfWeek.SUNDAY) {
             installmentDate = installmentDate.with(TemporalAdjusters.next(DayOfWeek.MONDAY));
