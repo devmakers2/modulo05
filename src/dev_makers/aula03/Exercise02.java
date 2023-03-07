@@ -17,7 +17,7 @@ public class Exercise02 {
         System.out.println(changeNumber(4.4, multiplyByTwo));
     }
 
-    private static Double changeNumber(Double number, Function<Double, Double> function) {
+    private static double changeNumber(Double number, Function<Double, Double> function) {
         return function.apply(number);
     }
 }
