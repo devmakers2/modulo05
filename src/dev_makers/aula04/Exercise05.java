@@ -23,11 +23,11 @@ public class Exercise05 {
 
         List<Person> list = List.of(alice, bob, charlie, david);
 
-        List<String> listOfNames = list.stream().
-                                        filter(person -> person.getAge() >= 18).
-                                        map(Person::getName).
-                                        limit(3).
-                                        collect(Collectors.toList());
+        List<String> listOfNames = list.stream()
+                                       .filter(person -> person.getAge() >= 18)
+                                       .map(Person::getName)
+                                       .limit(3)
+                                       .collect(Collectors.toList());
 
         System.out.println(listOfNames);
     }
